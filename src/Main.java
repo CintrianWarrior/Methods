@@ -1,31 +1,49 @@
+import java.time.LocalDate;
+
 public class Main {
-    public static void printSeparator() {
-        System.out.println("++++++++++++++++");
-        System.out.println("----------------");
-    }
-
-    public static void printIssues(int issueCount) {
-        System.out.println(issueCount);
-    }
-
-    public static int sum(int[] numbers) {
-        int sum = 0;
-        for (int i = 0; i < numbers.length; i++) {
-            sum = sum + numbers[i];
+    public static void defineTheLeapYear(int year) {
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            System.out.println(year + " год является високосным");
+        } else {
+            System.out.println(year + " год не является високосным");
         }
-        return sum;
+    }
+
+    public static void defineOSApp(int clientOS, int clientDeviceYear) {
+        int currentYear = LocalDate.now().getYear();
+        if (clientOS == 0 && clientDeviceYear < currentYear) {
+            System.out.println("Установите lite-версию приложения для iOS по ссылке");
+        } else if (clientOS == 0 && clientDeviceYear == currentYear) {
+            System.out.println("Установите версию приложения для iOS по ссылке");
+        } else if (clientOS == 1 && clientDeviceYear == currentYear) {
+            System.out.println("Установите версию приложения для Android по ссылке");
+        }
+        if (clientOS == 1 && clientDeviceYear < currentYear) {
+            System.out.println("Установите lite-версию приложения для Android по ссылке");
+        }
+    }
+
+    public static void defineDeliveryDays(int deliveryDistance) {
+        int deliveryDays = 0;
+        if (deliveryDistance <= 20) {
+            deliveryDays = 1;
+        } else if (deliveryDistance<=60) {
+            deliveryDays = 2;
+        } else if (deliveryDistance<=100) {
+            deliveryDays = 3;
+        }
+        System.out.println("Потребуется дней " + deliveryDays);
     }
     public static void main(String[] args) {
-        int[] issuesByMonths = {4, 6, 7, 9, 2, 5, 12, 3, 7, 10, 6, 7, 1, 8,};
-        printSeparator();
-        for (int i = 0; i < issuesByMonths.length; i++) {
-            printIssues(issuesByMonths[i]);
-            if ((i + 1) % 3 == 0) {
-                printSeparator();
-            }
-        }
-        printSeparator();
-        int total = sum(issuesByMonths);
-        printIssues(total);
+        System.out.println("Задача 1");
+        int year = 2020;
+        defineTheLeapYear(year);
+        System.out.println("Задача 2");
+        int clientOS = 1;
+        int clientDeviceYear = 2022;
+        defineOSApp(clientOS,clientDeviceYear);
+        System.out.println("Задача 3");
+        int deliveryDistance = 95;
+        defineDeliveryDays(deliveryDistance);
     }
 }
