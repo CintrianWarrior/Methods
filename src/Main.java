@@ -11,16 +11,28 @@ public class Main {
 
     public static void defineOSApp(int clientOS, int clientDeviceYear) {
         int currentYear = LocalDate.now().getYear();
-        if (clientOS == 0 && clientDeviceYear<currentYear) {
+        if (clientOS == 0 && clientDeviceYear < currentYear) {
             System.out.println("Установите lite-версию приложения для iOS по ссылке");
         } else if (clientOS == 0 && clientDeviceYear == currentYear) {
             System.out.println("Установите версию приложения для iOS по ссылке");
-        } else if (clientOS == 1&& clientDeviceYear==currentYear) {
+        } else if (clientOS == 1 && clientDeviceYear == currentYear) {
             System.out.println("Установите версию приложения для Android по ссылке");
         }
-        if (clientOS==1&&clientDeviceYear < currentYear){
+        if (clientOS == 1 && clientDeviceYear < currentYear) {
             System.out.println("Установите lite-версию приложения для Android по ссылке");
         }
+    }
+
+    public static void defineDeliveryDays(int deliveryDistance) {
+        int deliveryDays = 0;
+        if (deliveryDistance <= 20) {
+            deliveryDays = 1;
+        } else if (deliveryDistance<=60) {
+            deliveryDays = 2;
+        } else if (deliveryDistance<=100) {
+            deliveryDays = 3;
+        }
+        System.out.println("Потребуется дней " + deliveryDays);
     }
     public static void main(String[] args) {
         System.out.println("Задача 1");
@@ -30,5 +42,8 @@ public class Main {
         int clientOS = 1;
         int clientDeviceYear = 2022;
         defineOSApp(clientOS,clientDeviceYear);
+        System.out.println("Задача 3");
+        int deliveryDistance = 95;
+        defineDeliveryDays(deliveryDistance);
     }
 }
